@@ -1,3 +1,4 @@
+# refer https://github.com/marketplace/actions/release-drafter
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 categories:
@@ -24,7 +25,10 @@ version-resolver:
   patch:
     labels:
       - "patch"
+  default: patch
+exclude-contributors:
+  - "myusername"
 template: |
-  ## What's Changed
+  ## Changes
 
   $CHANGES
