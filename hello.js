@@ -4,5 +4,3 @@ console.log("res:", res);
 console.log("res:", res);
 console.log("res:", res);
 console.log("res:", res);
-console.log("res:", res);
-console.log("hello");
