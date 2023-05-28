@@ -24,7 +24,6 @@ version-resolver:
   patch:
     labels:
       - "patch"
-  default: patch
 template: |
   ## What's Changed
 
