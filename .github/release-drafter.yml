@@ -27,7 +27,7 @@ version-resolver:
       - "patch"
   default: patch
 exclude-contributors:
-  - "myusername"
+  - "whosydd"
 template: |
   ## Changes
 
