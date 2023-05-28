@@ -5,6 +5,10 @@ on:
     types:
       - "closed"
     branches:
+<<<<<<< HEAD
+=======
+      - "main"
+>>>>>>> main
       - "release/**"
 
   # Allows you to run this workflow manually from the Actions tab
