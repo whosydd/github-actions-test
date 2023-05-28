@@ -26,8 +26,7 @@ version-resolver:
     labels:
       - "patch"
   default: patch
-exclude-contributors:
-  - "whosydd"
+exclude-contributors: ["whosydd"]
 template: |
   ## Changes
 
