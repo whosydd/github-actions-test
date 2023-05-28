@@ -1,15 +1,9 @@
 name: vscode publish
 
 on:
-  pull_request:
+  release:
     types:
-      - "closed"
-    branches:
-<<<<<<< HEAD
-=======
-      - "main"
->>>>>>> main
-      - "release/**"
+      - "published"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
