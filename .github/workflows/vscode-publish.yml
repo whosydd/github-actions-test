@@ -12,4 +12,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: ll
+      - uses: actions/checkout@v3
+
+      - run: yarn run package
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: hello.js
+          path: hello.js
