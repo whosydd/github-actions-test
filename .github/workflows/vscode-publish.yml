@@ -43,3 +43,4 @@ jobs:
         with:
           token: ${{ secrets.GH_PAT }}
           asset-path: "${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.txt"
+          asset-name: ${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.txt
