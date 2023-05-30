@@ -1,4 +1,4 @@
-name: vscode publish
+name: VSCode Publish
 
 on:
   release:
@@ -9,15 +9,68 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - run: yarn
-      - run: yarn run package
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 16
 
-      - uses: actions/upload-artifact@v3
+      # - name: Install Dependencies
+      #   run: yarn
+
+      # - name: Bundle
+      # run: yarn package
+      - name: Get Name
+        id: get_name
+        run: echo NAME=$(jq -r .name package.json) >> $GITHUB_OUTPUT
+
+      - name: Get Version
+        id: get_version
+        run: echo VERSION=$(jq -r .version package.json) >> $GITHUB_OUTPUT
+
+      - run: echo 'hello world' > ${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.txt
+
+      - uses: planet-code/upload-to-release-action@1.0.0
         with:
-          name: hello.js
-          path: hello.js
+          token: ${{ secrets.GH_PAT }}
+          asset-path: "${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.txt"
+
+  # release:
+  #   name: Release
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  # - name: Get Name
+  #   id: get_name
+  #   run: echo NAME=$(jq -r .name package.json) >> $GITHUB_OUTPUT
+
+  # - name: Get Version
+  #   id: get_version
+  #   run: echo VERSION=$(jq -r .version package.json) >> $GITHUB_OUTPUT
+
+  # - name: Upload Artifact
+  #   uses: actions/upload-artifact@v3
+  #   with:
+  #     name: vsix
+  #     path: ${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.vsix
+  #     retention-days: 5
+
+  # - name: Download Artifact
+  #   uses: actions/download-artifact@v3
+  #   with:
+  #     name: my-artifact
+
+  # - name: Publish to Visual Studio Marketplace
+  #   uses: HaaLeo/publish-vscode-extension@v1
+  #   with:
+  #     yarn: true
+  #     pat: ${{ secrets.VSCE_PAT }}
+  #     registryUrl: https://marketplace.visualstudio.com
