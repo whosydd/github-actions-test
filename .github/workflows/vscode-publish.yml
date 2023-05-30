@@ -36,7 +36,6 @@ jobs:
 
       - run: echo 'hello world' > ${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.txt
 
-      - uses: planet-code/upload-to-release-action@1.0.0
+      - uses: nebula-actions/upload-assets
         with:
-          token: ${{ secrets.GH_PAT }}
           asset-path: "${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.txt"
