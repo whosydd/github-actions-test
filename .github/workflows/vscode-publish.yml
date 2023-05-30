@@ -38,7 +38,7 @@ jobs:
           
       - uses: echapmanFromBunnings/upload-release-assets@1.3
         with:
-          releaseTag: ${{steps.get_version.outputs.VERSION}}
+          releaseTag: 'v${{steps.get_version.outputs.VERSION}}'
           githubToken: ${{ secrets.GH_PAT }}
           files: |
             ${{steps.get_name.outputs.NAME}}-${{steps.get_version.outputs.VERSION}}.txt
