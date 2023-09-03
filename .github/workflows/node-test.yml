@@ -13,8 +13,9 @@ jobs:
         with:
           node-version: 16
           cache: 'pnpm'
+      - run: corepack enable
+      - run: corepack prepare pnpm@7.32.1 --activate
       - run: pnpm install
       - run: pnpm -h
 
-      #- run: corepack enable
-      #- run: corepack prepare pnpm@7.32.1 --activate
+
