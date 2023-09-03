@@ -9,13 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'pnpm'
-      - run: corepack enable
-      - run: corepack prepare pnpm@7.32.1 --activate
-      - run: pnpm install
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
       - run: pnpm -h
 
 
