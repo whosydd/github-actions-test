@@ -1,0 +1,20 @@
+name: release deploy
+on:
+
+
+  workflow_dispatch:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm -h
+
+      #- run: corepack enable
+      #- run: corepack prepare pnpm@7.32.1 --activate
